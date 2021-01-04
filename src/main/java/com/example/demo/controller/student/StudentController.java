@@ -1,5 +1,6 @@
 package com.example.demo.controller.student;
 
+import com.example.demo.model.AppUser;
 import com.example.demo.model.Entity.Student;
 import com.example.demo.service.student.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,21 +17,23 @@ public class StudentController {
     @Autowired
     private IStudentService studentService;
 
-    @GetMapping("/findAll")
-    public ResponseEntity<Iterable<Student>> findAll(Pageable pageable){
-        return new ResponseEntity<>(studentService.findAll(), HttpStatus.OK);
+    @GetMapping("/getAll")
+    public ResponseEntity<Iterable<Student>> findAll(){
+        return new ResponseEntity<>( studentService.findAll(),HttpStatus.OK);
     }
 
     @PostMapping("/save")
-    public ResponseEntity<Student> save (Student student){
-        return new ResponseEntity<>(studentService.save(student),HttpStatus.OK);
+    public ResponseEntity<Student> save (@RequestBody Student student){
+        studentService.save(student);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
-    @GetMapping("/findById")
-    public ResponseEntity<Student> findById(Long id){
-        return new ResponseEntity<>(studentService.findById(id).get(), HttpStatus.OK);
+    @GetMapping("/findById/{id}")
+    public ResponseEntity<Student> findById(@PathVariable Long id){
+        Student student = studentService.findById(id).get();
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
-    @DeleteMapping("/delete")
-    public ResponseEntity remove(Long id){
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity remove(@PathVariable Long id){
         studentService.remove(id);
         return new ResponseEntity (HttpStatus.OK);
     }

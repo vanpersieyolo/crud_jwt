@@ -32,11 +32,11 @@ public class UserController {
 
     @PostMapping("/login")
     public LoginResponse  authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-//        Authentication authentication = authenticationManager.authenticate
-//                (new UsernamePasswordAuthenticationToken(
-//                        loginRequest.getUsername(), loginRequest.getPassword()
-//                        )
-//                );
+        Authentication authentication = authenticationManager.authenticate
+                (new UsernamePasswordAuthenticationToken(
+                        loginRequest.getUsername(), loginRequest.getPassword()
+                        )
+                );
 //        ResponseData rs = new ResponseData();
 //        if(loginRequest.getUsername().equals("test") && loginRequest.getPassword().equals("password")) {
 //            String jwt = tokenProvider.generateToken((AppUserDetail) authentication.getPrincipal());
@@ -47,12 +47,12 @@ public class UserController {
 //            rs.setMessage("username or password wrong");
 //        }
 //        return rs;
-//        SecurityContextHolder.getContext().setAuthentication(authentication);
+        SecurityContextHolder.getContext().setAuthentication(authentication);
 
-        // Trả về jwt cho người dùng.
-//        String jwt = tokenProvider.generateToken((AppUserDetail) authentication.getPrincipal());
-        String jwt = "AAA";
-        System.out.println("_-----------" + jwt);
+//         Trả về jwt cho người dùng.
+        String jwt = tokenProvider.generateToken((AppUserDetail) authentication.getPrincipal());
+//        String jwt = "AAA";
+        System.out.println("-----------" + jwt);
         return new LoginResponse(jwt);
     }
     @GetMapping("/random")

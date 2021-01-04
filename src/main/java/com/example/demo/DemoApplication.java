@@ -9,24 +9,24 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @SpringBootApplication
-public class DemoApplication implements CommandLineRunner {
+public class DemoApplication  {
 
     public static void main(String[] args) {
         SpringApplication.run(DemoApplication.class, args);
     }
 
-    @Autowired
-    UserRepository userRepository;
-    @Autowired
-    PasswordEncoder passwordEncoder;
+//    @Autowired
+//    UserRepository userRepository;
+//    @Autowired
+//    PasswordEncoder passwordEncoder;
 
-    @Override
-    public void run(String... args) throws Exception {
-
-        AppUser user = new AppUser();
-        user.setUsername("van");
-        user.setPassword(passwordEncoder.encode("van"));
-        userRepository.save(user);
-        System.out.println(user);
-    }
+//    @Override
+//    public void run(String... args) throws Exception {
+//
+//        AppUser user = new AppUser();
+//        user.setUsername("van");
+//        user.setPassword(passwordEncoder.encode("van"));
+//        userRepository.save(user);
+//        System.out.println(user);
+//    }
 }

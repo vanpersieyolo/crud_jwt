@@ -15,7 +15,7 @@ import javax.validation.constraints.NotBlank;
 @Data
 public class Student {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
 
     @NotBlank
@@ -27,4 +27,5 @@ public class Student {
 
     @NotBlank
     String number;
+
 }

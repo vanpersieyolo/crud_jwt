@@ -17,6 +17,7 @@ public class AppUserDetail implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
+        //auto role la ROLE_USER
         return Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
     }
 

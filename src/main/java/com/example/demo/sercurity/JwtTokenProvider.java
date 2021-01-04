@@ -9,13 +9,13 @@ import java.util.Date;
 @Component
 @Slf4j
 public class JwtTokenProvider {
-    private final String JWT_SECRET = "danganhvan";
+    private final String JWT_SECRET = "timebird";
     private final long JWT_EXPIRE = 604800000L;
 
     // Tạo ra jwt từ thông tin user
     public String generateToken(AppUserDetail userDetail){
         Date now = new Date();
-        Date expire = new Date(now.getTime()+JWT_EXPIRE);
+        Date expire = new Date(now.getTime() + JWT_EXPIRE);
         return Jwts.builder().setSubject(Long.toString(userDetail.getAppUser().getId())).setIssuedAt(now).
                 setExpiration(expire).signWith(SignatureAlgorithm.HS512, JWT_SECRET).compact();
     }
@@ -25,7 +25,6 @@ public class JwtTokenProvider {
                 .setSigningKey(JWT_SECRET)
                 .parseClaimsJws(token)
                 .getBody();
-
         return Long.parseLong(claims.getSubject());
     }
 
